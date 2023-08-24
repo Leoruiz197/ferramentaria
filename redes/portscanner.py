@@ -1,3 +1,4 @@
+from math import floor
 import socket
 import threading
 import time
@@ -46,8 +47,9 @@ def main():
     target_ip = input("Digite o endereço IP alvo: ")
     start_port = int(input("Digite a porta inicial a ser testada: "))
     end_port = int(input("Digite a porta final a ser testada: "))
-    num_threads = 6553  # Número de threads
-
+    num_threads = floor((end_port-start_port)/10)  # Número de threads
+    print(f"Threads criadas: {num_threads}")
+    
     total_ports = end_port - start_port + 1
     ports_per_thread = total_ports // num_threads
     threads = []
